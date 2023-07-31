@@ -1,0 +1,49 @@
+body{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+#container{
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 20px;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+#display{
+    background-color: salmon;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#largeButtons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#action{
+    flex: 0 0 145px;
+}
+
+#smallButtons{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    gap: 10px;
+}
+
+button {
+    flex: 0 0 67.5px;
+    height: 55px;
+}
