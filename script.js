@@ -15,6 +15,7 @@ function changeDisplay(string){
             displayArray = [];
         }else if(isNaN(lastElement) && lastElement !== '.'){
             display.textContent = string
+            console.log('string')
         }else{
             display.textContent += string;
         }
@@ -22,9 +23,10 @@ function changeDisplay(string){
         if(displayArray.length == 0){
             displayArray.push('0');
         }
+        evaluate(string);
     }
     displayArray.push(string);
-    console.log(displayArray)
+    console.log(displayArray);
 }
 
 function clearDisplay(){
@@ -38,23 +40,25 @@ function deleteDisplay(){
         display.textContent = display.textContent.slice(0, -1);
     }
     displayArray.pop();
-    console.log(displayArray);
 }
 
-function evaluate(){
-    const lastElement = displayArray[displayArray.length - 1];
-    const secondLastElement = displayArray[displayArray.length - 2];
+function evaluate(lastElement){
+    console.log('startEval');
+    const secondLastElement = displayArray[displayArray.length - 1];
+    console.log(secondLastElement, lastElement);
     if(secondLastElement == "/" && lastElement == 0){
         alert('Invalid! Cannot divide by 0.');
         clearDisplay();
-    }else if(isNaN(lastElement) && lastElement !== '.'){
+    }else if(isNaN(secondLastElement) && secondLastElement !== '.'
+                && lastElement == '='){
         alert('Invalid! Type in another number.');
     }else{
         const value = eval(displayArray.join(''));
         display.textContent = value;
-        displayArray = [display.textContent];
-        isSolution = true;
+        displayArray = [value];
     }
+    console.log(displayArray);
+    console.log('endEval');
 }
 
 clearBtn.addEventListener('click', () => {
@@ -66,14 +70,15 @@ deleteBtn.addEventListener('click', () => {
 })
 
 equalBtn.addEventListener('click', () => {
-    evaluate();
+    evaluate(equalBtn.textContent);
+    displayArray = [display.textContent];
+    isSolution = true;
 })
 
 smallButtons.forEach(button => {
     if(button.textContent!== '='){
         button.addEventListener('click', () => {
             changeDisplay(button.textContent);
-            console.log(button.textContent);
         });
     }
 });
