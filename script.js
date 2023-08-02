@@ -47,7 +47,7 @@ deleteBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     evaluate();
-    displayArray = [];
+    displayArray = [display.textContent];
 })
 
 smallButtons.forEach(button => {
