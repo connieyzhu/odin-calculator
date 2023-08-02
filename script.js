@@ -42,9 +42,17 @@ function deleteDisplay(){
 }
 
 function evaluate(){
-    
-    const value = eval(displayArray.join(''));
-    display.textContent = value;
+    console.log('evaluate');
+    console.log(displayArray);
+    const lastElement = displayArray[displayArray.length - 1];
+    if(isNaN(lastElement) && lastElement !== '.'){
+        alert('Invalid! Type in another number.');
+    }else{
+        const value = eval(displayArray.join(''));
+        display.textContent = value;
+        displayArray = [display.textContent];
+        isSolution = true;
+    }
 }
 
 clearBtn.addEventListener('click', () => {
@@ -57,8 +65,6 @@ deleteBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     evaluate();
-    displayArray = [display.textContent];
-    isSolution = true;
 })
 
 smallButtons.forEach(button => {
