@@ -37,7 +37,7 @@ body{
     gap: 10px;
 }
 
-#action{
+.action{
     flex: 0 0 145px;
 }
 
