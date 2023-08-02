@@ -5,8 +5,13 @@ const deleteBtn = document.getElementById('delete');
 let displayArray = [];
 
 function changeDisplay(string){
+    const lastElement = displayArray[displayArray.length - 1];
     if(!isNaN(string) || string == '.'){
-        display.textContent += string;
+        if(isNaN(lastElement) || lastElement !== '.'){
+            display.textContent = string
+        }else{
+            display.textContent += string;
+        }
     }
     displayArray.push(string);
     console.log(displayArray)
@@ -14,6 +19,7 @@ function changeDisplay(string){
 
 function clearDisplay(){
     display.textContent = '';
+    displayArray = [];
 }
 
 function deleteDisplay(){
