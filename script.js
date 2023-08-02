@@ -13,10 +13,14 @@ function changeDisplay(string){
             display.textContent = string
             isSolution = false;
             displayArray = [];
-        }else if((isNaN(lastElement) && lastElement !== '.')){
+        }else if(isNaN(lastElement) && lastElement !== '.'){
             display.textContent = string
         }else{
             display.textContent += string;
+        }
+    }else{
+        if(displayArray.length == 0){
+            displayArray.push('0');
         }
     }
     displayArray.push(string);
@@ -38,6 +42,7 @@ function deleteDisplay(){
 }
 
 function evaluate(){
+    
     const value = eval(displayArray.join(''));
     display.textContent = value;
 }
