@@ -49,6 +49,7 @@ function deleteDisplay(){
         display.textContent = display.textContent.slice(0, -1);
     }
     displayArray.pop();
+    disableDecimal();
 }
 
 function evaluate(lastElement){
