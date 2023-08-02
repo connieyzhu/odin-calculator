@@ -9,6 +9,7 @@ let isSolution = false;
 function changeDisplay(string){
     const lastElement = displayArray[displayArray.length - 1];
     if(!isNaN(string) || string == '.'){
+        console.log('num')
         if(isSolution){
             display.textContent = string
             isSolution = false;
@@ -20,6 +21,8 @@ function changeDisplay(string){
             display.textContent += string;
         }
     }else{
+        isSolution = false;
+        console.log('not');
         if(displayArray.length == 0){
             displayArray.push('0');
         }
@@ -45,7 +48,6 @@ function deleteDisplay(){
 function evaluate(lastElement){
     console.log('startEval');
     const secondLastElement = displayArray[displayArray.length - 1];
-    console.log(secondLastElement, lastElement);
     if(secondLastElement == "/" && lastElement == 0){
         alert('Invalid! Cannot divide by 0.');
         clearDisplay();
@@ -53,12 +55,16 @@ function evaluate(lastElement){
                 && lastElement == '='){
         alert('Invalid! Type in another number.');
     }else{
-        const value = eval(displayArray.join(''));
+        const value = solveFunction(displayArray.join(''));
         display.textContent = value;
         displayArray = [value];
     }
     console.log(displayArray);
     console.log('endEval');
+}
+
+function solveFunction(fn){
+    return new Function('return ' + fn)();
 }
 
 clearBtn.addEventListener('click', () => {
@@ -73,6 +79,7 @@ equalBtn.addEventListener('click', () => {
     evaluate(equalBtn.textContent);
     displayArray = [display.textContent];
     isSolution = true;
+    console.log('equals', displayArray);
 })
 
 smallButtons.forEach(button => {
