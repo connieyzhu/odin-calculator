@@ -31,7 +31,7 @@ body{
     gap: 10px;
 }
 
-#largeButtons{
+.largeButtons{
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -41,7 +41,7 @@ body{
     flex: 0 0 145px;
 }
 
-#smallButtons{
+.smallButtons{
     display: flex;
     flex-wrap: wrap;
     width: 300px;

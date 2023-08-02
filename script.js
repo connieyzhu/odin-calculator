@@ -1,6 +1,7 @@
 const display = document.getElementById('display');
-const numButtons = document.querySelectorAll('button');
-const clear = document.getElementById('clear');
+const smallButtons = document.querySelectorAll('div.smallButtons button');
+const clearBtn = document.getElementById('clear');
+const deleteBtn = document.getElementById('delete');
 let displayArray = [];
 
 function changeDisplay(string){
@@ -15,13 +16,25 @@ function clearDisplay(){
     display.textContent = '';
 }
 
-numButtons.forEach(button => {
+function deleteDisplay(){
+    const lastElement = displayArray[displayArray.length - 1];
+    if(!isNaN(lastElement) || lastElement == '.'){
+        display.textContent -= lastElement;
+    }
+    displayArray.pop();
+}
+
+clearBtn.addEventListener('click', () => {
+    clearDisplay();
+})
+
+deleteBtn.addEventListener('click', () => {
+    deleteDisplay();
+})
+
+smallButtons.forEach(button => {
     button.addEventListener('click', () => {
         changeDisplay(button.textContent);
         console.log(button.textContent);
     })
 });
-
-clear.addEventListener('click', () => {
-    clearDisplay();
-})
