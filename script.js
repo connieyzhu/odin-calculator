@@ -4,11 +4,16 @@ const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
 const equalBtn = document.getElementById('equal');
 let displayArray = [];
+let isSolution = false;
 
 function changeDisplay(string){
     const lastElement = displayArray[displayArray.length - 1];
     if(!isNaN(string) || string == '.'){
-        if(isNaN(lastElement) || lastElement !== '.'){
+        if(isSolution){
+            display.textContent = string
+            isSolution = false;
+            displayArray = [];
+        }else if((isNaN(lastElement) && lastElement !== '.')){
             display.textContent = string
         }else{
             display.textContent += string;
@@ -33,7 +38,7 @@ function deleteDisplay(){
 }
 
 function evaluate(){
-    const value = eval(displayArray.join(' '));
+    const value = eval(displayArray.join(''));
     display.textContent = value;
 }
 
@@ -48,6 +53,7 @@ deleteBtn.addEventListener('click', () => {
 equalBtn.addEventListener('click', () => {
     evaluate();
     displayArray = [display.textContent];
+    isSolution = true;
 })
 
 smallButtons.forEach(button => {
