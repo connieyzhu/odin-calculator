@@ -3,6 +3,7 @@ const smallButtons = document.querySelectorAll('div.smallButtons button');
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
 const equalBtn = document.getElementById('equal');
+const decimalBtn = document.getElementById('decimal')
 let displayArray = [];
 let isSolution = false;
 
@@ -33,6 +34,7 @@ function changeDisplay(string){
         evaluate(string);
     }
     displayArray.push(string);
+    disableDecimal();
     console.log(displayArray);
 }
 
@@ -69,6 +71,14 @@ function evaluate(lastElement){
 
 function solveFunction(fn){
     return new Function('return ' + fn)();
+}
+
+function disableDecimal(){
+    if(displayArray.includes('.')){
+        decimalBtn.disabled = true;
+    }else{
+        decimalBtn.disabled = false;
+    }
 }
 
 clearBtn.addEventListener('click', () => {
