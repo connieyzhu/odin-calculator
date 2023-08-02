@@ -19,9 +19,10 @@ function clearDisplay(){
 function deleteDisplay(){
     const lastElement = displayArray[displayArray.length - 1];
     if(!isNaN(lastElement) || lastElement == '.'){
-        display.textContent -= lastElement;
+        display.textContent = display.textContent.slice(0, -1);
     }
     displayArray.pop();
+    console.log(displayArray);
 }
 
 clearBtn.addEventListener('click', () => {
