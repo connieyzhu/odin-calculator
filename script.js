@@ -21,6 +21,10 @@ function changeDisplay(string){
             display.textContent += string;
         }
     }else{
+        if(isNaN(lastElement) && lastElement !== '.'){
+            alert('Invalid! Type in another number.');
+            return;
+        }
         isSolution = false;
         console.log('not');
         if(displayArray.length == 0){
@@ -52,10 +56,10 @@ function evaluate(lastElement){
         alert('Invalid! Cannot divide by 0.');
         clearDisplay();
     }else if(isNaN(secondLastElement) && secondLastElement !== '.'
-                && lastElement == '='){
+                && isNaN(lastElement) && lastElement !== '.'){
         alert('Invalid! Type in another number.');
     }else{
-        const value = solveFunction(displayArray.join(''));
+        const value = Math.round((solveFunction(displayArray.join('')) + Number.EPSILON) * 100) / 100;
         display.textContent = value;
         displayArray = [value];
     }
@@ -77,7 +81,6 @@ deleteBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     evaluate(equalBtn.textContent);
-    displayArray = [display.textContent];
     isSolution = true;
     console.log('equals', displayArray);
 })
