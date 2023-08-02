@@ -42,10 +42,12 @@ function deleteDisplay(){
 }
 
 function evaluate(){
-    console.log('evaluate');
-    console.log(displayArray);
     const lastElement = displayArray[displayArray.length - 1];
-    if(isNaN(lastElement) && lastElement !== '.'){
+    const secondLastElement = displayArray[displayArray.length - 2];
+    if(secondLastElement == "/" && lastElement == 0){
+        alert('Invalid! Cannot divide by 0.');
+        clearDisplay();
+    }else if(isNaN(lastElement) && lastElement !== '.'){
         alert('Invalid! Type in another number.');
     }else{
         const value = eval(displayArray.join(''));
