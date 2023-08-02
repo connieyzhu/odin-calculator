@@ -1,9 +1,14 @@
 const display = document.getElementById('display');
-const numButtons = document.querySelectorAll('#num');
+const numButtons = document.querySelectorAll('button');
 const clear = document.getElementById('clear');
+let displayArray = [];
 
 function changeDisplay(string){
-    display.textContent = string;
+    if(!isNaN(string) || string == '.'){
+        display.textContent += string;
+    }
+    displayArray.push(string);
+    console.log(displayArray)
 }
 
 function clearDisplay(){
