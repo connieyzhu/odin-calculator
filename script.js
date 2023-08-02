@@ -2,6 +2,7 @@ const display = document.getElementById('display');
 const smallButtons = document.querySelectorAll('div.smallButtons button');
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
+const equalBtn = document.getElementById('equal');
 let displayArray = [];
 
 function changeDisplay(string){
@@ -31,6 +32,11 @@ function deleteDisplay(){
     console.log(displayArray);
 }
 
+function evaluate(){
+    const value = eval(displayArray.join(' '));
+    display.textContent = value;
+}
+
 clearBtn.addEventListener('click', () => {
     clearDisplay();
 })
@@ -39,9 +45,16 @@ deleteBtn.addEventListener('click', () => {
     deleteDisplay();
 })
 
+equalBtn.addEventListener('click', () => {
+    evaluate();
+    displayArray = [];
+})
+
 smallButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        changeDisplay(button.textContent);
-        console.log(button.textContent);
-    })
+    if(button.textContent!== '='){
+        button.addEventListener('click', () => {
+            changeDisplay(button.textContent);
+            console.log(button.textContent);
+        });
+    }
 });
